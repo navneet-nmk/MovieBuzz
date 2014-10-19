@@ -3,7 +3,6 @@ package com.navneet.movietospeech;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
 
 import org.apache.http.HttpEntity;
@@ -43,6 +42,7 @@ import android.widget.Toast;
 import com.inmobi.commons.InMobi;
 import com.inmobi.monetization.IMBanner;
 import com.squareup.picasso.Picasso;
+import com.teenvan.movietospeech.MoviesListActivity;
 import com.teenvan.movietospeech.R;
 
 public class MainActivity extends Activity implements OnClickListener,
@@ -61,7 +61,6 @@ public class MainActivity extends Activity implements OnClickListener,
 	protected String movieSynopsis;
 	String speech;
 	String URL = "http://www.omdbapi.com/?i=&t=";
-	String rottenURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&page=1&country=in&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	private TextToSpeech tts;
 	boolean mTrue;
 	HttpClient client;
@@ -86,7 +85,7 @@ public class MainActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		InMobi.initialize(this, "d12af048281f46dcae92a364a69da997");
-		IMBanner banner = (IMBanner)findViewById(R.id.banner);
+		IMBanner banner = (IMBanner) findViewById(R.id.banner);
 		banner.loadBanner();
 		mSpeechButton = (Button) findViewById(R.id.speechButton);
 		client = new DefaultHttpClient();
@@ -232,8 +231,20 @@ public class MainActivity extends Activity implements OnClickListener,
 			result = data
 					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 			speech = result.get(0).toString();
-			if (speech.equals("upcoming movies")) {
-				new GetMoviesTaskRotten().execute(rottenURL);
+			if (speech.equals("upcoming movies")
+					|| speech.equals("Upcoming movies")
+					|| speech.equals("Upcoming Movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("In theatres")
+					|| speech.equals("in theatres")
+					|| speech.equals("In Theatres")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
 			} else {
 				speech2 = speech + " " + "trailer";
 				speech = speech.replace(' ', '+');
@@ -247,58 +258,6 @@ public class MainActivity extends Activity implements OnClickListener,
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
-	}
-
-	private class GetMoviesTaskRotten extends AsyncTask<String, String, String> {
-		@Override
-		protected String doInBackground(String... uri) {
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpResponse response;
-			String responseString = null;
-			try {
-				// make a HTTP request
-				response = httpclient.execute(new HttpGet(uri[0]));
-				StatusLine statusLine = response.getStatusLine();
-				if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-					// request successful - read the response and close the
-					// connection
-					ByteArrayOutputStream out = new ByteArrayOutputStream();
-					response.getEntity().writeTo(out);
-					out.close();
-					responseString = out.toString();
-				} else {
-					// request failed - close the connection
-					response.getEntity().getContent().close();
-					throw new IOException(statusLine.getReasonPhrase());
-				}
-			} catch (Exception e) {
-				Log.d("Test", "Couldn't make a successful request!");
-			}
-			return responseString;
-
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if (result != null) {
-				try {
-					JSONObject jsonResponse = new JSONObject(result);
-					JSONArray movieData = jsonResponse.getJSONArray("movies");
-					String[] movieNames = null ;
-					for(int i=0;i<5;i++){
-						JSONObject posts = movieData.getJSONObject(i);
-						movieNames[i] = posts.getString("title");
-					}
-					
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		}
 	}
 
 	private class GetMoviesTask extends AsyncTask<String, String, String> {
