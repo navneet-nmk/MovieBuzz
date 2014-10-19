@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgrnd"
-    tools:context="com.example.movietospeech.MainActivity" >
+    tools:context="com.navneet.movietospeech.MainActivity" >
 
     <ImageView
         android:id="@+id/backgroundImage"
@@ -33,5 +33,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="102dp"
         android:background="@drawable/mic" />
+
+    <com.inmobi.monetization.IMBanner
+        android:id="@+id/banner"
+        android:layout_width="468dp"
+        android:layout_height="60dp"
+        adSize="12"
+        android:layout_alignParentBottom="true"
+        appId="d12af048281f46dcae92a364a69da997" >
+    </com.inmobi.monetization.IMBanner>
 
 </RelativeLayout>
