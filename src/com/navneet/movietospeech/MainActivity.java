@@ -21,7 +21,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -204,6 +207,16 @@ public class MainActivity extends Activity implements OnClickListener,
 		}
 	}
 
+	private boolean isNetworkAvailable() {
+		ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo network = manager.getActiveNetworkInfo();
+		boolean isAvailable = false;
+		if (network != null && network.isConnected()) {
+			isAvailable = true;
+		}
+		return isAvailable;
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -245,12 +258,25 @@ public class MainActivity extends Activity implements OnClickListener,
 						MoviesListActivity.class);
 				intent.putExtra("Query", speech);
 				startActivity(intent);
+			} else if (speech.equals("Box Office")
+					|| speech.equals("box office")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
 			} else {
-				speech2 = speech + " " + "trailer";
-				speech = speech.replace(' ', '+');
-				speech2 = speech2.replace(' ', '+');
+				if (isNetworkAvailable()) {
+					speech2 = speech + " " + "trailer";
+					speech = speech.replace(' ', '+');
+					speech2 = speech2.replace(' ', '+');
 
-				new GetMoviesTask().execute(URL + speech);
+					new GetMoviesTask().execute(URL + speech);
+				} else {
+					Toast.makeText(
+							MainActivity.this,
+							"Living in stone age  ,  are you ? Connect to internet!",
+							Toast.LENGTH_LONG).show();
+				}
 			}
 			// mSpeechTextView.setText(result.get(0).substring(0, 1)
 			// .toUpperCase()
@@ -392,6 +418,7 @@ public class MainActivity extends Activity implements OnClickListener,
 				Toast.makeText(MainActivity.this,
 						"Oops error! Please try again.", Toast.LENGTH_LONG)
 						.show();
+
 			}
 
 		}

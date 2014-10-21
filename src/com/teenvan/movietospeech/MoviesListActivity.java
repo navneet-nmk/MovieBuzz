@@ -26,6 +26,7 @@ public class MoviesListActivity extends Activity {
 	private ListView moviesList;
 	protected String rottenUpcomingURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String rottenInURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=5&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
+	protected String rottenBoxURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=5&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String query;
 
 	@Override
@@ -36,8 +37,11 @@ public class MoviesListActivity extends Activity {
 		if (query.equals("upcoming movies") || query.equals("Upcoming movies")
 				|| query.equals("Upcoming Movies")) {
 			new GetMoviesTaskRotten().execute(rottenUpcomingURL);
-		} else {
+		} else if (query.equals("In Theatres") || query.equals("in theatres")
+				|| query.equals("In theatres")) {
 			new GetMoviesTaskRotten().execute(rottenInURL);
+		} else {
+			new GetMoviesTaskRotten().execute(rottenBoxURL);
 		}
 
 		setContentView(R.layout.activity_movies_list);
