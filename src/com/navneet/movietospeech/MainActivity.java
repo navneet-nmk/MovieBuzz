@@ -86,14 +86,17 @@ public class MainActivity extends Activity implements OnClickListener,
 	protected String seriesRecomendation;
 	protected String mDirector;
 	protected String directorRecomendation = "";
+	protected String movieNameReceived;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		InMobi.initialize(this, "d12af048281f46dcae92a364a69da997");
 		IMBanner banner = (IMBanner) findViewById(R.id.banner);
 		banner.loadBanner();
+
 		mSpeechButton = (Button) findViewById(R.id.speechButton);
 		client = new DefaultHttpClient();
 		mSpeechTextView = (TextView) findViewById(R.id.speechText);
@@ -103,6 +106,12 @@ public class MainActivity extends Activity implements OnClickListener,
 		getActionBar().hide();
 		tts = new TextToSpeech(this, this);
 		mSpeechButton.setOnClickListener(this);
+
+		movieNameReceived = getIntent().getStringExtra("Title");
+		if (movieNameReceived != null) {
+			movieNameReceived = movieNameReceived.replace(' ', '+');
+			new GetMoviesTask().execute(URL + movieNameReceived);
+		}
 
 	}
 
@@ -392,6 +401,8 @@ public class MainActivity extends Activity implements OnClickListener,
 							directorRecomendation = "The Director of the movie is known for creating classics such as E.T. and many more.";
 						} else if (mDirector.equals("Ashutosh Gowariker")) {
 							directorRecomendation = "The Director of the movie is known for creating timeless classics and this movie is no exception to that.";
+						} else if (mDirector.equals("Rajkumar Hirani")) {
+							directorRecomendation = "The Director of the movie has directed amazing movies such as Munnabhai M.B.B.S.";
 						}
 					} else {
 						directorRecomendation = "";

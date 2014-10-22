@@ -28,10 +28,10 @@ import com.navneet.movietospeech.MainActivity;
 
 public class MoviesListActivity extends ListActivity {
 	String blogData;
-	private ListView moviesList;
-	protected String rottenUpcomingURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
-	protected String rottenInURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=5&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
-	protected String rottenBoxURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=5&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
+
+	protected String rottenUpcomingURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=10&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
+	protected String rottenInURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=10&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
+	protected String rottenBoxURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=10&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String query;
 
 	@Override
@@ -50,8 +50,6 @@ public class MoviesListActivity extends ListActivity {
 		}
 
 		setContentView(R.layout.activity_movies_list);
-
-		moviesList = (ListView) findViewById(R.id.moviesListView);
 
 	}
 
@@ -106,7 +104,7 @@ public class MoviesListActivity extends ListActivity {
 					ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 							MoviesListActivity.this, R.layout.custom_textview,
 							movieNames);
-					moviesList.setAdapter(adapter);
+					setListAdapter(adapter);
 
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
