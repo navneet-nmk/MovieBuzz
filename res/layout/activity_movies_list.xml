@@ -2,14 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.teenvan.movietospeech.MoviesListActivity" >
+    tools:context="com.teenvan.movietospeech.MoviesListActivity" 
+    android:background="@drawable/backgrnd">
 
     <ListView
         android:id="@+id/moviesListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true" 
+        >
     </ListView>
 
 </RelativeLayout>

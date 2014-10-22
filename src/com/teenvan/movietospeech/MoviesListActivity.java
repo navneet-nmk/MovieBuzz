@@ -13,16 +13,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MoviesListActivity extends Activity {
+import com.navneet.movietospeech.MainActivity;
+
+public class MoviesListActivity extends ListActivity {
+	String blogData;
 	private ListView moviesList;
 	protected String rottenUpcomingURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String rottenInURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=5&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
@@ -84,6 +89,7 @@ public class MoviesListActivity extends Activity {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			if (result != null) {
+				blogData = result;
 				try {
 					JSONObject jsonResponse = new JSONObject(result);
 
@@ -98,8 +104,8 @@ public class MoviesListActivity extends Activity {
 						// movieNames[i] = posts.getString("title");
 					}
 					ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-							MoviesListActivity.this,
-							android.R.layout.simple_list_item_1, movieNames);
+							MoviesListActivity.this, R.layout.custom_textview,
+							movieNames);
 					moviesList.setAdapter(adapter);
 
 				} catch (JSONException e) {
@@ -109,6 +115,26 @@ public class MoviesListActivity extends Activity {
 			}
 
 		}
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		try {
+			JSONObject jsonresponse = new JSONObject(blogData);
+			JSONArray movies = jsonresponse.getJSONArray("movies");
+			JSONObject movie = movies.getJSONObject(position);
+			String movieName = movie.getString("title");
+			Intent intent = new Intent(MoviesListActivity.this,
+					MainActivity.class);
+			intent.putExtra("Title", movieName);
+			startActivity(intent);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

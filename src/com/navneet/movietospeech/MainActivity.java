@@ -82,6 +82,10 @@ public class MainActivity extends Activity implements OnClickListener,
 	protected ImageView backgroundImage;
 	Dialog videoTrailer;
 	protected final JSONObject movieJsonData = null;
+	protected String mType;
+	protected String seriesRecomendation;
+	protected String mDirector;
+	protected String directorRecomendation = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -318,7 +322,7 @@ public class MainActivity extends Activity implements OnClickListener,
 
 		@Override
 		protected void onPostExecute(String response) {
-			// TODO Auto-generated method stub
+
 			super.onPostExecute(response);
 			if (response != null) {
 				try {
@@ -331,6 +335,8 @@ public class MainActivity extends Activity implements OnClickListener,
 								.substring(0, 3));
 
 					}
+					mDirector = jsonResponse.getString("Director");
+					mType = jsonResponse.getString("Type");
 					movieGenre = jsonResponse.getString("Genre");
 					movieTitle = jsonResponse.getString("Title");
 					movieYear = jsonResponse.getString("Year");
@@ -341,37 +347,80 @@ public class MainActivity extends Activity implements OnClickListener,
 						r2 = movieRating.substring(2);
 						movieRating = r1 + "point" + r2;
 
-						if (rating > 6.0 && runTime < 150) {
+						if (rating > 6.0 && runTime < 150
+								&& mType.equals("movie")) {
 							recomendation = "It is a must watch movie for "
 									+ movieGenre
 									+ " lovers and it is also not too lengthy.";
-						} else if (rating > 6.0 && runTime > 150) {
+
+						} else if (rating > 6.0 && runTime > 150
+								&& mType.equals("movie")) {
 							recomendation = "It is a must watch movie for "
 									+ movieGenre
 									+ " lovers , but , it is quite lengthy.";
-						} else if (rating < 6.0 && runTime > 150) {
-							recomendation = "This is long movie , may not be a great watch.";
-						} else if (rating < 6.0 && runTime < 150) {
+
+						} else if (rating < 6.0 && runTime > 150
+								&& mType.equals("movie")) {
+							recomendation = "This is a long movie , may not be a great watch.";
+
+						} else if (rating < 6.0 && runTime < 150
+								&& mType.equals("movie")) {
 							recomendation = "This may be a short movie but not a great watch.";
+
+						} else if (rating > 6.0 && mType.equals("series")) {
+							seriesRecomendation = "It is a must watch TV series for "
+									+ movieGenre + " lovers.";
+
+						} else if (rating < 6.0 && mType.equals("series")) {
+							seriesRecomendation = "There are better series out there. Pass this one.";
 						}
 					} else {
 						rating = 0;
 						recomendation = "We don't have sufficient information.";
 
 					}
+					if (mDirector != null) {
+						if (mDirector.equals("David Fincher")) {
+							directorRecomendation = "The Director of the movie is also well known for making some excellent movies.";
+						} else if (mDirector.equals("Christopher Nolan")) {
+							directorRecomendation = "The Director is renowned for making movies with socio-logical and philosophical ideas , such as , Memento , prestige and many more";
+						} else if (mDirector.equals("James Cameron")) {
+							directorRecomendation = "The Director of the movie is popular for his other movies such as Jurrasic park and others.";
+						} else if (mDirector.equals("David Lynch")) {
+							directorRecomendation = "The Director of the movie is known for creating movies with weird concepts such as Mullholland drive and more.";
+						} else if (mDirector.equals("Steven Spielberg")) {
+							directorRecomendation = "The Director of the movie is known for creating classics such as E.T. and many more.";
+						} else if (mDirector.equals("Ashutosh Gowariker")) {
+							directorRecomendation = "The Director of the movie is known for creating timeless classics and this movie is no exception to that.";
+						}
+					} else {
+						directorRecomendation = "";
+					}
+
 					movieSynopsis = jsonResponse.getString("Plot");
 					String imageUrl = jsonResponse.getString("Poster");
 
 					Uri mImageUri = Uri.parse(imageUrl);
 					Picasso.with(MainActivity.this).load(mImageUri)
 							.into(backgroundImage);
-					mSpeechSpoken = (movieTitle + "was released in the year "
-							+ movieYear + "and has an I M D B rating of "
-							+ movieRating + ".." + "Synopsis." + movieSynopsis + recomendation);
-					mSpeechTextView.setText(movieTitle + "\n" + movieYear
-							+ "\n" + rating + "\n" + movieSynopsis);
-					tts.speak(mSpeechSpoken, TextToSpeech.QUEUE_FLUSH, null);
-
+					if (mType.equals("movie")) {
+						mSpeechSpoken = (movieTitle
+								+ "was released in the year " + movieYear
+								+ "and has an I M D B rating of " + movieRating
+								+ ".." + "Synopsis." + movieSynopsis
+								+ recomendation + "." + directorRecomendation);
+						mSpeechTextView.setText(movieTitle + "\n" + movieYear
+								+ "\n" + rating + "\n" + movieSynopsis);
+						tts.speak(mSpeechSpoken, TextToSpeech.QUEUE_FLUSH, null);
+					} else {
+						mSpeechSpoken = (movieTitle + "premiered in the year "
+								+ movieYear + "and has an I M D B rating of "
+								+ movieRating + ".." + "Synopsis."
+								+ movieSynopsis + seriesRecomendation);
+						mSpeechTextView.setText(movieTitle + "\n" + movieYear
+								+ "\n" + rating + "\n" + movieSynopsis);
+						tts.speak(mSpeechSpoken, TextToSpeech.QUEUE_FLUSH, null);
+					}
 					// Declare the Dialog for viewing the trailer
 					videoTrailer = new Dialog(MainActivity.this);
 					videoTrailer.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -407,7 +456,7 @@ public class MainActivity extends Activity implements OnClickListener,
 							// TODO Auto-generated method stub
 							videoTrailer.show();
 						}
-					}, 13000);
+					}, 12000);
 
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
