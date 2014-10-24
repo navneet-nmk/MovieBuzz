@@ -134,7 +134,6 @@ public class MainActivity extends Activity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -276,6 +275,145 @@ public class MainActivity extends Activity implements OnClickListener,
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech
+					.equals("have brad pitt and edward norton acted in a movie together?")
+					|| speech.equals("brad pitt and edward norton")
+					|| speech
+							.equals("have brad pitt and edward norton acted in a movie together")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "Brad");
+				startActivity(intent);
+			} else if (speech.equals("Tom Cruise Science Fiction Movies")
+					|| speech.equals("tom cruise science fiction movies")
+					|| speech.equals("tom Cruise")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "Tom");
+				startActivity(intent);
+
+			} else if (speech
+					.equals("what are will ferrell's highest grossing comedies?")
+					|| speech.equals("will ferrell highest grossing comedies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "Will");
+				startActivity(intent);
+			} else if (speech.equals("popular movies in 2010")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("popular movies in 2011")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("popular movies in 2012")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("popular movies in 2013")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("popular movies in 2014")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("brad pitt popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", speech);
+				startActivity(intent);
+			} else if (speech.equals("david fincher popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "david");
+				startActivity(intent);
+			} else if (speech.equals("edward norton popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "Edward");
+				startActivity(intent);
+			} else if (speech.equals("what are the most popular kids movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "kids");
+				startActivity(intent);
+			} else if (speech.equals("best drama movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "drama");
+				startActivity(intent);
+			} else if (speech.equals("best action movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "action");
+				startActivity(intent);
+			} else if (speech.equals("best adventure movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "adventure");
+				startActivity(intent);
+			} else if (speech.equals("best animation movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "animation");
+				startActivity(intent);
+			} else if (speech.equals("best comedy movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "comedy");
+				startActivity(intent);
+			} else if (speech.equals("best crime movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "crime");
+				startActivity(intent);
+			} else if (speech.equals("best disaster movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "disaster");
+				startActivity(intent);
+			} else if (speech.equals("best documentary movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "documentary");
+				startActivity(intent);
+			} else if (speech.equals("best fantasy movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "fantasy");
+				startActivity(intent);
+			} else if (speech.equals("best horror movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "horror");
+				startActivity(intent);
+			} else if (speech.equals("best romance movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "romance");
+				startActivity(intent);
+			} else if (speech.equals("best science movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "science");
+				startActivity(intent);
+			} else if (speech.equals("best thriller movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "thriller");
+				startActivity(intent);
+			} else if (speech.equals("best suspense movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "suspense");
 				startActivity(intent);
 			} else {
 				if (isNetworkAvailable()) {

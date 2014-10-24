@@ -33,6 +33,8 @@ public class MoviesListActivity extends ListActivity {
 	protected String rottenInURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=10&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String rottenBoxURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=10&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String query;
+	protected String APIkey = "24dd57acd091d95f62e3a6bc67b23f54";
+	protected String discoverURL = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,99 @@ public class MoviesListActivity extends ListActivity {
 		} else if (query.equals("In Theatres") || query.equals("in theatres")
 				|| query.equals("In theatres")) {
 			new GetMoviesTaskRotten().execute(rottenInURL);
+		} else if (query.equals("Brad")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_people=287,819&sort_by=vote_average.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("Tom")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.des&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("Will")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=35&with_cast=23659&sort_by=revenue.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("popular movies in 2010")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("popular movies in 2011")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?primary_release_year=2011&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("popular movies in 2012")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?primary_release_year=2012&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("popular movies in 2013")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?primary_release_year=2013&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("popular movies in 2014")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?primary_release_year=2014&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("david")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_people=7467&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("brad pitt popular movies")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_people=287&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
 		} else {
 			new GetMoviesTaskRotten().execute(rottenBoxURL);
 		}
 
 		setContentView(R.layout.activity_movies_list);
 
+	}
+
+	private class GetMoviesTaskDiscover extends
+			AsyncTask<String, String, String> {
+		@Override
+		protected String doInBackground(String... uri) {
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpResponse response;
+			String responseString = null;
+			try {
+				// make a HTTP request
+				response = httpclient.execute(new HttpGet(uri[0]));
+				StatusLine statusLine = response.getStatusLine();
+				if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+					// request successful - read the response and close the
+					// connection
+					ByteArrayOutputStream out = new ByteArrayOutputStream();
+					response.getEntity().writeTo(out);
+					out.close();
+					responseString = out.toString();
+				} else {
+					// request failed - close the connection
+					response.getEntity().getContent().close();
+					throw new IOException(statusLine.getReasonPhrase());
+				}
+			} catch (Exception e) {
+				Log.d("Test", "Couldn't make a successful request!");
+			}
+			return responseString;
+
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+
+			super.onPostExecute(result);
+			if (result != null) {
+
+				try {
+					JSONObject jsonResponse = new JSONObject(result);
+					JSONArray movies = jsonResponse.getJSONArray("results");
+					String[] movieNames = new String[movies.length()];
+					for (int i = 0; i < movies.length(); i++) {
+						JSONObject movie = movies.getJSONObject(i);
+						movieNames[i] = movie.getString("title");
+					}
+					ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+							MoviesListActivity.this, R.layout.custom_textview,
+							movieNames);
+					setListAdapter(adapter);
+				} catch (JSONException e) {
+
+					Log.d("Test", "Failed to parse the JSON response!");
+				}
+			}
+
+		}
 	}
 
 	private class GetMoviesTaskRotten extends AsyncTask<String, String, String> {
