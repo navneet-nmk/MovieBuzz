@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.teenvan.movietospeech.MoviesListActivity" 
+    android:padding="4dp"
     android:background="@drawable/backgrnd">
 
     <ListView

@@ -28,13 +28,15 @@ import com.navneet.movietospeech.MainActivity;
 
 public class MoviesListActivity extends ListActivity {
 	String blogData;
-
+	String movieData;
+	String movieName;
 	protected String rottenUpcomingURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=10&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String rottenInURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=10&page=1&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String rottenBoxURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=10&country=us&apikey=42vvmbm9nkj7u6gchdmrsunr";
 	protected String query;
 	protected String APIkey = "24dd57acd091d95f62e3a6bc67b23f54";
 	protected String discoverURL = "";
+	protected int mFlag = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,69 @@ public class MoviesListActivity extends ListActivity {
 		} else if (query.equals("brad pitt popular movies")) {
 			new GetMoviesTaskDiscover()
 					.execute("http://api.themoviedb.org/3/discover/movie?with_people=287&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
-		} else {
+		} else if (query.equals("drama")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("action")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=28&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("adventure")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=12&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("animation")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=16&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("comedy")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=35&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("crime")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=80&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("disaster")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=105&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("documentary")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=99&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("fantasy")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=14&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("horror")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=27&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("romance")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=10749&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("science")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=878&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("thriller")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=53&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("suspense")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=10748&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("kids")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("edward")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_people=819&sort_by=popularity.desc&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best drama")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best thriller")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=53&sort_by=vote_average.desc&vote_count.gte=10&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best suspense")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=10748&sort_by=vote_average.desc&vote_count.gte=10&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best horror")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=27&sort_by=vote_average.desc&vote_count.gte=10&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		}
+
+		else {
 			new GetMoviesTaskRotten().execute(rottenBoxURL);
 		}
 
@@ -120,7 +184,8 @@ public class MoviesListActivity extends ListActivity {
 
 			super.onPostExecute(result);
 			if (result != null) {
-
+				movieData = result;
+				mFlag = 1;
 				try {
 					JSONObject jsonResponse = new JSONObject(result);
 					JSONArray movies = jsonResponse.getJSONArray("results");
@@ -177,6 +242,7 @@ public class MoviesListActivity extends ListActivity {
 			super.onPostExecute(result);
 			if (result != null) {
 				blogData = result;
+				mFlag = 2;
 				try {
 					JSONObject jsonResponse = new JSONObject(result);
 
@@ -209,10 +275,17 @@ public class MoviesListActivity extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		try {
-			JSONObject jsonresponse = new JSONObject(blogData);
-			JSONArray movies = jsonresponse.getJSONArray("movies");
-			JSONObject movie = movies.getJSONObject(position);
-			String movieName = movie.getString("title");
+			if (mFlag == 2) {
+				JSONObject jsonresponse = new JSONObject(blogData);
+				JSONArray movies = jsonresponse.getJSONArray("movies");
+				JSONObject movie = movies.getJSONObject(position);
+				movieName = movie.getString("title");
+			} else if (mFlag == 1) {
+				JSONObject jsonResponse = new JSONObject(movieData);
+				JSONArray movies = jsonResponse.getJSONArray("results");
+				JSONObject movie = movies.getJSONObject(position);
+				movieName = movie.getString("title");
+			}
 			Intent intent = new Intent(MoviesListActivity.this,
 					MainActivity.class);
 			intent.putExtra("Title", movieName);

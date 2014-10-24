@@ -256,6 +256,9 @@ public class MainActivity extends Activity implements OnClickListener,
 			result = data
 					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 			speech = result.get(0).toString();
+
+			// Speech Permutations for different Search options
+
 			if (speech.equals("upcoming movies")
 					|| speech.equals("Upcoming movies")
 					|| speech.equals("Upcoming Movies")) {
@@ -414,6 +417,26 @@ public class MainActivity extends Activity implements OnClickListener,
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "suspense");
+				startActivity(intent);
+			} else if (speech.equals("What are the best drama movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best drama");
+				startActivity(intent);
+			} else if (speech.equals("What are the best thriller movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best thriller");
+				startActivity(intent);
+			} else if (speech.equals("What are the best suspense movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best suspense");
+				startActivity(intent);
+			} else if (speech.equals("What are the best horror movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best horror");
 				startActivity(intent);
 			} else {
 				if (isNetworkAvailable()) {
