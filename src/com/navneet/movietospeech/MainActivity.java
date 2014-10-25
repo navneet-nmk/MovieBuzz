@@ -418,25 +418,98 @@ public class MainActivity extends Activity implements OnClickListener,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "suspense");
 				startActivity(intent);
-			} else if (speech.equals("What are the best drama movies")) {
+			} else if (speech.equals("what are the best drama movies")) {
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "best drama");
 				startActivity(intent);
-			} else if (speech.equals("What are the best thriller movies")) {
+			} else if (speech.equals("what are the best thriller movies")) {
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "best thriller");
 				startActivity(intent);
-			} else if (speech.equals("What are the best suspense movies")) {
+			} else if (speech.equals("what are the best suspense movies")) {
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "best suspense");
 				startActivity(intent);
-			} else if (speech.equals("What are the best horror movies")) {
+			} else if (speech.equals("what are the best horror movies")) {
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "best horror");
+				startActivity(intent);
+			} else if (speech
+					.equals("what are liam neeson highest grossing movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "liam");
+				startActivity(intent);
+			} else if (speech.equals("what movies are in theatres")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "intheatres");
+				startActivity(intent);
+			} else if (speech.equals("what are the most popular tv shows")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "popular tv");
+				startActivity(intent);
+			} else if (speech.equals("what are the best drama tv series")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best drama series");
+				startActivity(intent);
+			} else if (speech.equals("what are the best action tv series")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best action series");
+				startActivity(intent);
+			} else if (speech.equals("what are the best animation tv series")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best animation series");
+				startActivity(intent);
+			} else if (speech.equals("what are the best mystery tv series")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best mystery series");
+				startActivity(intent);
+			} else if (speech.equals("what are the best documentary tv series")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best documentary series");
+				startActivity(intent);
+			} else if (speech.equals("what are the best comedy tv series")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "best comedy series");
+				startActivity(intent);
+			} else if (speech.equals("what are the upcoming movies this week")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "upcoming movies");
+				startActivity(intent);
+			} else if (speech
+					.equals("what are the movies that are playing right now")
+					|| speech.equals("movies playing now")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "right now");
+				startActivity(intent);
+			} else if (speech.equals("which tv shows are airing today")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "tv airing today");
+				startActivity(intent);
+			} else if (speech.equals("which tv shows are currently on air")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "on air tv");
+				startActivity(intent);
+			} else if (speech.equals("tom hanks popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "tom");
 				startActivity(intent);
 			} else {
 				if (isNetworkAvailable()) {

@@ -139,6 +139,44 @@ public class MoviesListActivity extends ListActivity {
 		} else if (query.equals("best horror")) {
 			new GetMoviesTaskDiscover()
 					.execute("http://api.themoviedb.org/3/discover/movie?with_genres=27&sort_by=vote_average.desc&vote_count.gte=10&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("liam")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/movie?sort_by=revenue.desc&with_cast=3896&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("intheatres")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/movie/now_playing?api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("popular tv")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?sort_by=popularity.des&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best drama series")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?with_genres=18&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best action series")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?with_genres=10759&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best animation series")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?with_genres=16&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best mystery series")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?with_genres=9648&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best documentary series")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?with_genres=99&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("best comedy series")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/discover/tv?with_genres=35&primary_release_year=2014&api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("upcoming movies")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/movie/upcoming?api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("tv airing today")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/tv/airing_today?api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("on air tv")) {
+			new GetMoviesTaskDiscover()
+					.execute("http://api.themoviedb.org/3/tv/on_the_air?api_key=24dd57acd091d95f62e3a6bc67b23f54");
+		} else if (query.equals("tom")) {
+			new GetMoviesTaskDiscover().execute("");
 		}
 
 		else {
