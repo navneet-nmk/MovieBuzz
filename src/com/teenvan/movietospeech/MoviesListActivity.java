@@ -325,7 +325,7 @@ public class MoviesListActivity extends ListActivity {
 				movieName = movie.getString("title");
 			}
 			Intent intent = new Intent(MoviesListActivity.this,
-					MainActivity.class);
+					MovieActivity.class);
 			intent.putExtra("Title", movieName);
 			startActivity(intent);
 		} catch (JSONException e) {
