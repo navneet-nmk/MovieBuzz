@@ -65,6 +65,7 @@ public class MovieActivity extends Activity implements OnInitListener {
 		IMBanner banner = (IMBanner) findViewById(R.id.banner);
 		banner.loadBanner();
 		getActionBar().hide();
+		backgroundImage = (ImageView) findViewById(R.id.backgroundImage);
 		tts = new TextToSpeech(this, this);
 		movieNameReceived = getIntent().getStringExtra("Title");
 		if (movieNameReceived != null) {

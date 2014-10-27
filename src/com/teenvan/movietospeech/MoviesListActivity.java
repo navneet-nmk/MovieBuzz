@@ -177,6 +177,26 @@ public class MoviesListActivity extends ListActivity {
 					.execute("http://api.themoviedb.org/3/tv/on_the_air?api_key=24dd57acd091d95f62e3a6bc67b23f54");
 		} else if (query.equals("tom")) {
 			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("sandra")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("jonah")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("least popular")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("least popular series")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("channing")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("nicholas")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("steven")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("peter")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("lynch")) {
+			new GetMoviesTaskDiscover().execute("");
+		} else if (query.equals("shahrukh")) {
+			new GetMoviesTaskDiscover().execute("");
 		}
 
 		else {

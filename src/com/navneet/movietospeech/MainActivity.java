@@ -47,6 +47,7 @@ import com.inmobi.monetization.IMBanner;
 import com.squareup.picasso.Picasso;
 import com.teenvan.movietospeech.MoviesListActivity;
 import com.teenvan.movietospeech.R;
+import com.teenvan.movietospeech.SettingsActivity;
 
 public class MainActivity extends Activity implements OnClickListener,
 		TextToSpeech.OnInitListener {
@@ -87,6 +88,7 @@ public class MainActivity extends Activity implements OnClickListener,
 	protected String mDirector;
 	protected String directorRecomendation = "";
 	protected String movieNameReceived;
+	protected TextView mSettings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class MainActivity extends Activity implements OnClickListener,
 
 		mSpeechButton = (Button) findViewById(R.id.speechButton);
 		client = new DefaultHttpClient();
+		mSettings = (TextView) findViewById(R.id.settingsTextView);
 		mSpeechTextView = (TextView) findViewById(R.id.speechText);
 		backgroundImage = (ImageView) findViewById(R.id.backgroundImage);
 
@@ -106,7 +109,15 @@ public class MainActivity extends Activity implements OnClickListener,
 		getActionBar().hide();
 		tts = new TextToSpeech(this, this);
 		mSpeechButton.setOnClickListener(this);
+		mSettings.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(MainActivity.this,
+						SettingsActivity.class);
+				startActivity(intent);
+			}
+		});
 		movieNameReceived = getIntent().getStringExtra("Title");
 		if (movieNameReceived != null) {
 			movieNameReceived = movieNameReceived.replace(' ', '+');
@@ -510,6 +521,56 @@ public class MainActivity extends Activity implements OnClickListener,
 				Intent intent = new Intent(MainActivity.this,
 						MoviesListActivity.class);
 				intent.putExtra("Query", "tom");
+				startActivity(intent);
+			} else if (speech.equals("sandra bullok popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "sandra");
+				startActivity(intent);
+			} else if (speech.equals("jonah hill popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "jonah");
+				startActivity(intent);
+			} else if (speech.equals("least popular movies this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "least popular");
+				startActivity(intent);
+			} else if (speech.equals("least popular tv series this year")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "least popular series");
+				startActivity(intent);
+			} else if (speech.equals("channing tatum popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "channing");
+				startActivity(intent);
+			} else if (speech.equals("nicholas cage popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "nicholas");
+				startActivity(intent);
+			} else if (speech.equals("steven spielberg popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "steven");
+				startActivity(intent);
+			} else if (speech.equals("peter jackson popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "peter");
+				startActivity(intent);
+			} else if (speech.equals("david lynch popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "lynch");
+				startActivity(intent);
+			} else if (speech.equals("shahrukh khan popular movies")) {
+				Intent intent = new Intent(MainActivity.this,
+						MoviesListActivity.class);
+				intent.putExtra("Query", "shahrukh");
 				startActivity(intent);
 			} else {
 				if (isNetworkAvailable()) {

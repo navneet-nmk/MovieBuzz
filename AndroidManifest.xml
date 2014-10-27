@@ -71,6 +71,10 @@
             android:name=".MovieActivity"
             android:label="@string/title_activity_movie" >
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

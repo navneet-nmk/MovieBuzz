@@ -420,7 +420,7 @@ containing a value of this type.
         public static final int speechbutton=0x7f02002b;
     }
     public static final class id {
-        public static final int action_settings=0x7f07001d;
+        public static final int action_settings=0x7f07001e;
         public static final int backgroundImage=0x7f070014;
         public static final int banner=0x7f070017;
         public static final int book_now=0x7f070010;
@@ -428,7 +428,7 @@ containing a value of this type.
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
         public static final int classic=0x7f070011;
-        public static final int dismissDialogButton=0x7f07001a;
+        public static final int dismissDialogButton=0x7f07001b;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
@@ -441,15 +441,16 @@ containing a value of this type.
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
         public static final int selectionDetails=0x7f07000b;
+        public static final int settingsTextView=0x7f070018;
         public static final int speechButton=0x7f070016;
         public static final int speechText=0x7f070015;
         public static final int strict_sandbox=0x7f070009;
         public static final int terrain=0x7f070003;
-        public static final int tv=0x7f070019;
-        public static final int video_text=0x7f07001c;
-        public static final int watchVideoButton=0x7f07001b;
+        public static final int tv=0x7f07001a;
+        public static final int video_text=0x7f07001d;
+        public static final int watchVideoButton=0x7f07001c;
         public static final int wrap_content=0x7f07000d;
-        public static final int youtube_view=0x7f070018;
+        public static final int youtube_view=0x7f070019;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
@@ -458,15 +459,17 @@ containing a value of this type.
         public static final int activity_main=0x7f030000;
         public static final int activity_movie=0x7f030001;
         public static final int activity_movies_list=0x7f030002;
-        public static final int activity_video=0x7f030003;
-        public static final int custom_textview=0x7f030004;
-        public static final int dialoglayout=0x7f030005;
+        public static final int activity_settings=0x7f030003;
+        public static final int activity_video=0x7f030004;
+        public static final int custom_textview=0x7f030005;
+        public static final int dialoglayout=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
         public static final int movie=0x7f0a0001;
         public static final int movies_list=0x7f0a0002;
-        public static final int video=0x7f0a0003;
+        public static final int settings=0x7f0a0003;
+        public static final int video=0x7f0a0004;
     }
     public static final class string {
         public static final int accept=0x7f050002;
@@ -578,11 +581,13 @@ containing a value of this type.
         public static final int hello_world=0x7f050024;
         public static final int hint_string=0x7f05002b;
         public static final int question_text=0x7f050028;
+        public static final int settings_text=0x7f05002e;
         public static final int speech_text=0x7f050026;
         public static final int store_picture_message=0x7f050001;
         public static final int store_picture_title=0x7f050000;
         public static final int title_activity_movie=0x7f05002d;
         public static final int title_activity_movies_list=0x7f05002c;
+        public static final int title_activity_settings=0x7f05002f;
         public static final int title_activity_video=0x7f05002a;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 

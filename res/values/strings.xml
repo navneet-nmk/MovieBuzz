@@ -12,5 +12,7 @@
     <string name="hint_string">Say the \"Movie Name\"</string>
     <string name="title_activity_movies_list">MoviesListActivity</string>
     <string name="title_activity_movie">MovieActivity</string>
+    <string name="settings_text">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>
